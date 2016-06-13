@@ -1,5 +1,7 @@
 package lorann.model;
 
+import java.awt.Color;
+
 import javax.swing.JFrame;
 
 import lorann.model.GameBoard;
@@ -12,6 +14,7 @@ public class ViewFrame  extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.add(new GameBoard());
 		this.setVisible(true);
+		JFrame.getContentPane().setBackground(Color.black);
 	}
 
 
