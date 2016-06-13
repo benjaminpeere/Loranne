@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 public class GameBoard extends JPanel implements KeyListener {
 
 	String Game[][] = new String [12][12];
-	int level = 1;
+	int level = 2;
 	private static ArrayList<Murs> Murss;
 	private static ArrayList<Bulle> Bulles;
 	private static ArrayList<Bourses> Boursess;
@@ -30,8 +30,6 @@ public class GameBoard extends JPanel implements KeyListener {
 		setFocusable(true);
 		addKeyListener(this);
 	}
-
-
 
 	private void ChangerLevel() {
 		try{
