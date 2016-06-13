@@ -108,12 +108,7 @@ public class GameBoard extends JPanel implements KeyListener {
 		}
 	}
 	public void keyPressed(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void keyReleased(KeyEvent arg0) {
-		int Touche = arg0.getKeyCode();
+int Touche = arg0.getKeyCode();
 		
 		if (Touche == KeyEvent.VK_DOWN){
 			lorann.setDir("BAS");
@@ -140,6 +135,11 @@ public class GameBoard extends JPanel implements KeyListener {
 		}
 		repaint();
 		//VerifierLevelFini();
+
+	}
+
+	public void keyReleased(KeyEvent arg0) {
+		
 
 	}
 
