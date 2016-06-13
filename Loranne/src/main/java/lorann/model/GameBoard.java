@@ -157,7 +157,7 @@ public class GameBoard extends JPanel implements KeyListener {
 					lorann.setX(lorann.getX() + 32 );
 				}
 				else if (lorann.getDir() == "DROITE"){
-					lorann.setX(lorann.getX() - 3 );
+					lorann.setX(lorann.getX() - 32 );
 				}
 			}
 		}
