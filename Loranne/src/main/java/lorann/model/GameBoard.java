@@ -56,13 +56,33 @@ public class GameBoard extends JPanel implements KeyListener {
 					bulle = new Bulle (x*32, y*32);
 					Bulles.add(bulle);
 				}
-				else if (strImg == '3')
+				else if (strImg == '3'){
+					Game [x][y] = "BOURSES";
+					bourses = new Bourses (x*32, y*32);
+					Boursess.add(bourses);
+				}
+				else if (strImg == ' '){
+					Game[x][y] = null;
+				}
+				else if (strImg == '\r' || strImg == '\n'){
+					x--;
+				}
+				if (x==11){
+					y++;
+					x=0;
+				}
+				else {
+					x++;
+				}
+				
 			}
 		}
 		catch(Exception ex){
-			
+			repaint();
 		}
 	}
+	
+	
 	public void keyPressed(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 
