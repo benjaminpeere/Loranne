@@ -4,12 +4,14 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.List;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.FileReader;
 import java.util.ArrayList;
 
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 public class GameBoard extends JPanel implements KeyListener {
@@ -162,6 +164,25 @@ public class GameBoard extends JPanel implements KeyListener {
 			}
 		}
 
+		for(int i=0;i<Boursess.size();i++){
+			bourses = (Bourses) Boursess.get(i);
+			Rectangle boursesRec = bourses.getBounds();
+
+			if(lorannRec.intersects(boursesRec)){
+				if (lorann.getDir() == "BAS"){
+					Boursess.remove(i);
+				}
+				else if (lorann.getDir() == "HAUT"){
+					Boursess.remove(i);
+				}
+				else if (lorann.getDir() == "GAUCHE"){
+					Boursess.remove(i);
+				}
+				else if (lorann.getDir() == "DROITE"){
+					Boursess.remove(i);
+				}
+			}
+		}
 		
 
 		for (int i=0;i<Bulles.size();i++){
@@ -173,11 +194,9 @@ public class GameBoard extends JPanel implements KeyListener {
 				
 
 				if (lorannRec.intersects(objectifRec) &&  !bulle.getDessus()){
-	
 					bulle.setDessus(true);;
 				}
 				else if (!lorannRec.intersects(objectifRec) && bulle.getDessus()){
-					
 					bulle.setDessus(false);
 				}
 			}

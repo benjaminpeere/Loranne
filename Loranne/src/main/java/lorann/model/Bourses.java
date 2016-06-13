@@ -33,4 +33,5 @@ public class Bourses {
 	public Image getImage(){
 		return Bourses;
 	}
+
 }
