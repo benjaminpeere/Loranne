@@ -175,9 +175,8 @@ public class GameBoard extends JPanel implements KeyListener {
 
 				if (lorannRec.intersects(objectifRec)){
 	
-					bulle.setDessus(true);
-					System.out.println("victoire");
-					repaint();
+					
+					
 					ChangerLevel();
 				}
 				
