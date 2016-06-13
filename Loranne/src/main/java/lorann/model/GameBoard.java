@@ -145,7 +145,7 @@ public class GameBoard extends JPanel implements KeyListener {
 		for(int i=0;i<Murss.size();i++){
 			mur = (Murs) Murss.get(i);
 			Rectangle murRec = mur.getBounds();
-
+			
 			if(lorannRec.intersects(murRec)){
 				if (lorann.getDir() == "BAS"){
 					lorann.setY(lorann.getY() - 32 );
@@ -160,6 +160,7 @@ public class GameBoard extends JPanel implements KeyListener {
 					lorann.setX(lorann.getX() - 32 );
 				}
 			}
+			
 		}
 
 		
@@ -172,14 +173,14 @@ public class GameBoard extends JPanel implements KeyListener {
 				bulle = (Bulle) Bulles.get(i);
 				
 
-				if (lorannRec.intersects(objectifRec) &&  !bulle.getDessus()){
+				if (lorannRec.intersects(objectifRec)){
 	
-					bulle.setDessus(true);;
+					bulle.setDessus(true);
+					System.out.println("victoire");
+					repaint();
+					ChangerLevel();
 				}
-				else if (!lorannRec.intersects(objectifRec) && bulle.getDessus()){
-					
-					bulle.setDessus(false);
-				}
+				
 			}
 		}
 
