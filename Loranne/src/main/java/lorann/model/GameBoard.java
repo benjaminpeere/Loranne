@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 public class GameBoard extends JPanel implements KeyListener {
 
 	String Game[][] = new String [12][12];
-	int level = 2;
+	int level = 1;
 	private static ArrayList<Murs> Murss;
 	private static ArrayList<Bulle> Bulles;
 	private static ArrayList<Bourses> Boursess;
@@ -113,7 +113,33 @@ public class GameBoard extends JPanel implements KeyListener {
 	}
 
 	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
+		int Touche = arg0.getKeyCode();
+		
+		if (Touche == KeyEvent.VK_DOWN){
+			lorann.setDir("BAS");
+			lorann.Move();
+			//CheckCollision();
+		}
+		else if (Touche == KeyEvent.VK_UP){
+			lorann.setDir("HAUT");
+			lorann.Move();
+			//CheckCollision();
+		}
+		else if (Touche == KeyEvent.VK_RIGHT){
+			lorann.setDir("DROITE");
+			lorann.Move();
+			//CheckCollision();
+		}
+		else if (Touche == KeyEvent.VK_LEFT){
+			lorann.setDir("GAUCHE");
+			lorann.Move();
+			//CheckCollision();
+		}
+		else if (Touche == KeyEvent.VK_R){
+			ChangerLevel();
+		}
+		repaint();
+		//VerifierLevelFini();
 
 	}
 
