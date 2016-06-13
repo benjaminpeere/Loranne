@@ -114,22 +114,22 @@ public class GameBoard extends JPanel implements KeyListener {
 		if (Touche == KeyEvent.VK_DOWN){
 			lorann.setDir("BAS");
 			lorann.Move();
-			//CheckCollision();
+			CheckCollision();
 		}
 		else if (Touche == KeyEvent.VK_UP){
 			lorann.setDir("HAUT");
 			lorann.Move();
-			//CheckCollision();
+			CheckCollision();
 		}
 		else if (Touche == KeyEvent.VK_RIGHT){
 			lorann.setDir("DROITE");
 			lorann.Move();
-			//CheckCollision();
+			CheckCollision();
 		}
 		else if (Touche == KeyEvent.VK_LEFT){
 			lorann.setDir("GAUCHE");
 			lorann.Move();
-			//CheckCollision();
+			CheckCollision();
 		}
 		else if (Touche == KeyEvent.VK_R){
 			ChangerLevel();
