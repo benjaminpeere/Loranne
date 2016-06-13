@@ -1,5 +1,5 @@
 package lorann.view;
 
-public class Controller {
+public class View {
 
 }
