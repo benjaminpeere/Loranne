@@ -18,13 +18,10 @@ public class Murs {
 	public Murs(int Startx, int Starty){
 		x = Startx;
 		y = Starty;
-
-
-
 	}
 
 	public Rectangle getBounds(){
-		Rectangle Box = new Rectangle (x,y,34,34);
+		Rectangle Box = new Rectangle (x,y,32,32);
 		return Box;
 	}
 

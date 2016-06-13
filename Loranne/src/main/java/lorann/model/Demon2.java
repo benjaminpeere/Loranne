@@ -5,20 +5,20 @@ import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 
-public class Bourses {
+public class Demon2 {
 	int x,y;
-	Image Bourses;
+	Image Demon2;
 	
-	public Bourses(int Startx, int Starty){
+	public Demon2(int Startx, int Starty){
 		x = Startx;
 		y = Starty;
 		
-		ImageIcon iBourses = new ImageIcon("Images/purse.png");
-		Bourses = iBourses.getImage();
+		ImageIcon iDemon2 = new ImageIcon("Images/monster_2.png");
+		Demon2 = iDemon2.getImage();
 	}
 	
 
-	public Rectangle getBounds(){ //pour les collision
+	public Rectangle getBounds(){ //pour les collisions
 		Rectangle Box = new Rectangle(x,y,32,32);
 		return Box;
 	}
@@ -32,6 +32,7 @@ public class Bourses {
 	}
 	
 	public Image getImage(){
-		return Bourses;
+		return Demon2;
 	}
 }
+

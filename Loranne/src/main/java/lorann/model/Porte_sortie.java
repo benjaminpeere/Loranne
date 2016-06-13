@@ -19,7 +19,7 @@ public class Porte_sortie {
 		y = Starty; 
 	}
 	public Rectangle getBounds(){
-		Rectangle Box = new Rectangle (x,y,34,34);
+		Rectangle Box = new Rectangle (x,y,32,32);
 		return Box;
 	}
 	

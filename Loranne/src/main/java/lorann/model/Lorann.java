@@ -9,14 +9,14 @@ public class Lorann {
 	int x,y;
 	String LorannDir = "BAS";
 	Image Lorann;
-	ImageIcon iLorannBas = new ImageIcon("Images/lorann_b.gif");
-	ImageIcon iLorannBasGauche = new ImageIcon("Images/lorann_bl.gif");
-	ImageIcon iLorannBasDroite = new ImageIcon("Images/lorann_br.gif");
-	ImageIcon iLorannDroite = new ImageIcon("Images/lorann_r.gif");
-	ImageIcon iLorannGauche = new ImageIcon("Images/lorann_l.gif");
-	ImageIcon iLorannHaut = new ImageIcon("Images/lorann_u.gif");
-	ImageIcon iLorannHautGauche = new ImageIcon("Images/lorann_ul.gif");
-	ImageIcon iLorannHautDroite = new ImageIcon("Images/lorann_ur.gif");
+	ImageIcon iLorannBas = new ImageIcon("Images/lorann_b.png");
+	ImageIcon iLorannBasGauche = new ImageIcon("Images/lorann_bl.png");
+	ImageIcon iLorannBasDroite = new ImageIcon("Images/lorann_br.png");
+	ImageIcon iLorannDroite = new ImageIcon("Images/lorann_r.png");
+	ImageIcon iLorannGauche = new ImageIcon("Images/lorann_l.png");
+	ImageIcon iLorannHaut = new ImageIcon("Images/lorann_u.png");
+	ImageIcon iLorannHautGauche = new ImageIcon("Images/lorann_ul.png");
+	ImageIcon iLorannHautDroite = new ImageIcon("Images/lorann_ur.png");
 	
 
 	public Lorann(int Startx, int Starty){
@@ -25,7 +25,7 @@ public class Lorann {
 	}
 	
 	public Rectangle getBounds(){ //pour les collision
-		Rectangle Box = new Rectangle(x,y,34,34);
+		Rectangle Box = new Rectangle(x,y,32,32);
 		return Box;
 	}
 	
@@ -54,7 +54,7 @@ public class Lorann {
 	}
 	
 	public Image getImage(){
-		if(LorannDir == "BAS"){ //on fait ça pour donner la bonne image de mario en fonction du déplacement
+		if(LorannDir == "BAS"){ //on fait ça pour donner la bonne image de lorann en fonction du déplacement
 			Lorann = iLorannBas.getImage();
 		}
 		else if (LorannDir == "BASGAUCHE"){
@@ -82,7 +82,7 @@ public class Lorann {
 	}
 	
 	public void Move(){
-		if(LorannDir == "BAS"){ //on fait ça pour bouger dans le bon sens Mario
+		if(LorannDir == "BAS"){ //on fait ça pour bouger dans le bon sens lorann
 			this.y += 34;
 		}
 		else if (LorannDir == "BASGAUCHE"){
