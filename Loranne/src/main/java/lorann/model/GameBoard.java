@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.FileReader;
@@ -35,14 +36,14 @@ public class GameBoard extends JPanel implements KeyListener {
 		try{
 			fr = new FileReader("Maps/level1.level");
 			int x=0, y=0, i=0;
-			
+
 			Murss = new ArrayList<Murs>();
 			Bulles = new ArrayList<Bulle>();
 			Boursess = new ArrayList<Bourses>();
-			
+
 			while((i=fr.read()) != -1){
 				char strImg = (char) i;
-				
+
 				if(strImg == '0'){
 					Game [x][y] = "MURS";
 					mur = new Murs(x*32, y*32);
@@ -81,11 +82,11 @@ public class GameBoard extends JPanel implements KeyListener {
 			repaint();
 		}
 	}
-	
+
 	public void paint (Graphics g){
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D) g;
-		
+
 		for(int i = 0; i< Murss.size(); i++){
 			mur = (Murs) Murss.get(i); 
 			g2d.drawImage(mur.getImage(), mur.getX(), mur.getY(), null);
@@ -108,8 +109,8 @@ public class GameBoard extends JPanel implements KeyListener {
 		}
 	}
 	public void keyPressed(KeyEvent arg0) {
-int Touche = arg0.getKeyCode();
-		
+		int Touche = arg0.getKeyCode();
+
 		if (Touche == KeyEvent.VK_DOWN){
 			lorann.setDir("BAS");
 			lorann.Move();
@@ -137,9 +138,55 @@ int Touche = arg0.getKeyCode();
 		//VerifierLevelFini();
 
 	}
+	public void CheckCollision(){
+		Rectangle lorannRec;
+		lorannRec = lorann.getBounds();
+
+		for(int i=0;i<Murss.size();i++){
+			mur = (Murs) Murss.get(i);
+			Rectangle murRec = mur.getBounds();
+
+			if(lorannRec.intersects(murRec)){
+				if (lorann.getDir() == "BAS"){
+					lorann.setY(lorann.getY() - 32 );
+				}
+				else if (lorann.getDir() == "HAUT"){
+					lorann.setY(lorann.getY() + 32 );
+				}
+				else if (lorann.getDir() == "GAUCHE"){
+					lorann.setX(lorann.getX() + 32 );
+				}
+				else if (lorann.getDir() == "DROITE"){
+					lorann.setX(lorann.getX() - 3 );
+				}
+			}
+		}
+
+		
+
+		for (int i=0;i<Bulles.size();i++){
+			bulle = (Bulle) Bulles.get(i);
+			Rectangle objectifRec = bulle.getBounds();
+
+			for (int j = 0; j < Bulles.size(); j++){
+				bulle = (Bulle) Bulles.get(i);
+				
+
+				if (lorannRec.intersects(objectifRec) &&  !bulle.getDessus()){
+	
+					bulle.setDessus(true);;
+				}
+				else if (!lorannRec.intersects(objectifRec) && bulle.getDessus()){
+					
+					bulle.setDessus(false);
+				}
+			}
+		}
+
+	}
 
 	public void keyReleased(KeyEvent arg0) {
-		
+
 
 	}
 
