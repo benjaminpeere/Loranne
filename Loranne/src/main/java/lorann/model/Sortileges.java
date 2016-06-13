@@ -17,9 +17,7 @@ public class Sortileges  {
 
 	public Sortileges(int Startx, int Starty){
 		x = Startx;
-		y = Starty;
-	
-		
+		y = Starty;	
 	}
 
 	public Rectangle getBounds(){
@@ -37,7 +35,6 @@ public class Sortileges  {
 		return SortilegeDir;
 	}
 
-
 	public void setX(int newX) {
 		this.x = newX;
 	}
@@ -47,39 +44,4 @@ public class Sortileges  {
 	public void setDir(String newDir) {
 		this.SortilegeDir = newDir;
 	}
-
-	public Image getImage(){
-		if(SortilegeDir == "BAS"){
-			Sortilege = iFireball1.getImage();
-		}
-		else if (MarioDir == "DROITE"){
-			Mario = iMarioDroite.getImage();
-		}
-		else if (MarioDir == "GAUCHE"){
-			Mario = iMarioGauche.getImage();
-		}
-		else if (MarioDir == "HAUT"){
-			Mario = iMarioHaut.getImage();
-		}
-		return Mario;
-	}
-
-	public void Move(){
-		for(int i = 0; i<33; i++){
-			if(SortilegeDir == "BAS"){
-				this.y += 34;
-			}
-			else if (SortilegeDir == "DROITE"){
-				this.x += 34;
-			}
-			else if (SortilegeDir == "GAUCHE"){
-				this.x -= 34;
-			}
-			else if (SortilegeDir == "HAUT"){
-				this.y -= 34;
-			}
-		}
-		
-	}
-
 }

@@ -16,9 +16,8 @@ public class Bourses {
 		ImageIcon iBourses = new ImageIcon("Images/purse.png");
 		Bourses = iBourses.getImage();
 	}
-	
 
-	public Rectangle getBounds(){ //pour les collision
+	public Rectangle getBounds(){ //pour les collisions
 		Rectangle Box = new Rectangle(x,y,32,32);
 		return Box;
 	}
