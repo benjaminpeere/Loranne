@@ -83,32 +83,32 @@ public class Lorann {
 	
 	public void Move(){
 		if(LorannDir == "BAS"){ //on fait ça pour bouger dans le bon sens lorann
-			this.y += 34;
+			this.y += 32;
 		}
 		else if (LorannDir == "BASGAUCHE"){
-			this.y += 34;
-			this.x -= 34;
+			this.y += 32;
+			this.x -= 32;
 		}
 		else if (LorannDir == "BASDROITE"){
-			this.y += 34;
-			this.x += 34;
+			this.y += 32;
+			this.x += 32;
 		}
 		else if (LorannDir == "DROITE"){
-			this.x += 34;
+			this.x += 32;
 		}
 		else if (LorannDir == "GAUCHE"){
-			this.x -= 34;
+			this.x -= 32;
 		}
 		else if (LorannDir == "HAUT"){
-			this.y -= 34;
+			this.y -= 32;
 		}
 		else if (LorannDir == "HAUTGAUCHE"){
-			this.y -= 34;
-			this.x -= 34;
+			this.y -= 32;
+			this.x -= 32;
 		}
 		else if (LorannDir == "HAUTDROITE"){
-			this.y -= 34;
-			this.x += 34;
+			this.y -= 32;
+			this.x += 32;
 		}
 	}
 }
