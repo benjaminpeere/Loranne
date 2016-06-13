@@ -1,6 +1,9 @@
 package lorann.model;
 
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.FileReader;
@@ -82,7 +85,31 @@ public class GameBoard extends JPanel implements KeyListener {
 		}
 	}
 	
-	
+	public void paint (Graphics g){
+		super.paint(g);
+		Graphics2D g2d = (Graphics2D) g;
+		
+		for(int i = 0; i< Murss.size(); i++){
+			mur = (Murs) Murss.get(i); 
+			g2d.drawImage(mur.getImage(), mur.getX(), mur.getY(), null);
+		}
+		for(int i = 0; i< Bulles.size(); i++){
+			bulle = (Bulle) Bulles.get(i); 
+			g2d.drawImage(bulle.getImage(), bulle.getX(), bulle.getY(), null);
+		}
+		for(int i = 0; i< Boursess.size(); i++){
+			bourses = (Bourses) Boursess.get(i); 
+			g2d.drawImage(bourses.getImage(), bourses.getX(),bourses.getY(), null);
+		}
+		try{
+			g2d.drawImage(lorann.getImage(), lorann.getX(), lorann.getY(), null);
+		}
+		catch(Exception ex){
+			g.setColor(Color.BLACK);
+			g.setFont(levelFont);
+			g.drawString("LEVEL : " + level,10, 25);
+		}
+	}
 	public void keyPressed(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 

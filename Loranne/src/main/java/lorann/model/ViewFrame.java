@@ -1,4 +1,5 @@
-package lorann.view;
+package lorann.model;
+
 import javax.swing.JFrame;
 
 import lorann.model.GameBoard;
@@ -13,5 +14,7 @@ public class ViewFrame  extends JFrame{
 		this.setVisible(true);
 	}
 
-	
+
 }
+
+
