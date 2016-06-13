@@ -13,7 +13,7 @@ public class Sortileges {
 		x = Startx;
 		y = Starty;
 		
-		ImageIcon iSortileges = new ImageIcon("Images/fire_1.png");
+		ImageIcon iSortileges = new ImageIcon("Images/fireball_1.png");
 		Sortileges = iSortileges.getImage();
 	}
 
