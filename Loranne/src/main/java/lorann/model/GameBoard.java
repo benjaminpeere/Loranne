@@ -35,7 +35,7 @@ public class GameBoard extends JPanel implements KeyListener {
 
 	private void ChangerLevel() {
 		try{
-			fr = new FileReader("Maps/"+ level + ".level");
+			fr = new FileReader("Maps/level1.level");
 			int x=0, y=0, i=0;
 			
 			Murss = new ArrayList<Murs>();
@@ -76,8 +76,7 @@ public class GameBoard extends JPanel implements KeyListener {
 				}
 				else {
 					x++;
-				}
-				
+				}		
 			}
 		}
 		catch(Exception ex){
