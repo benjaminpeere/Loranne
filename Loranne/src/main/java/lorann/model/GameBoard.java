@@ -254,11 +254,11 @@ public class GameBoard extends JPanel implements KeyListener {
 			demon1.MoveDemon();
 		}
 		else if(demon1.getY() < lorann.getY()){
-			demon1.setDir("HAUT");
+			demon1.setDir("BAS");
 			demon1.MoveDemon();
 		}
 		else if(demon1.getY() > lorann.getY()){
-			demon1.setDir("BAS");
+			demon1.setDir("HAUT");
 			demon1.MoveDemon();
 		}
 		repaint();
