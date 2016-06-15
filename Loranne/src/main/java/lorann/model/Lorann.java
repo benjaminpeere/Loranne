@@ -6,6 +6,7 @@ import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 
 public class Lorann {
+	public static Object lorann;
 	int x,y;
 	String LorannDir = "BAS";
 	Image Lorann;

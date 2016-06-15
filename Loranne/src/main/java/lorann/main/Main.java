@@ -5,7 +5,7 @@ import java.awt.Color;
 public class Main {
 
 	public static void main (String[] args){
-		lorann.model.ViewFrame frm = new lorann.model.ViewFrame();
+		lorann.view.ViewFrame frm = new lorann.view.ViewFrame();
 		
 	}
 }

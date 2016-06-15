@@ -16,22 +16,32 @@ import javax.swing.JPanel;
 
 public class GameBoard extends JPanel implements KeyListener {
 
+	
 	String Game[][] = new String [12][12];
 	int level = 1;
 	private static ArrayList<Murs> Murss;
 	private static ArrayList<Bulle> Bulles;
 	private static ArrayList<Bourses> Boursess;
+	private static ArrayList<Demon1> Demons1;
+	private static ArrayList<Demon2> Demons2;
+	private static ArrayList<Demon3> Demons3;
 	Murs mur;
 	Lorann lorann;
 	Bulle bulle;
 	Bourses bourses;
+	Demon1 demon1;
+	Demon2 demon2;
+	Demon3 demon3;
 	Font levelFont = new Font("SansSerif", Font.BOLD, 30);
 	FileReader fr;
 
 	public GameBoard (){
+		this.setBackground(Color.BLACK);
+		
 		ChangerLevel();
 		setFocusable(true);
 		addKeyListener(this);
+		
 	}
 
 	private void ChangerLevel() {
@@ -42,6 +52,9 @@ public class GameBoard extends JPanel implements KeyListener {
 			Murss = new ArrayList<Murs>();
 			Bulles = new ArrayList<Bulle>();
 			Boursess = new ArrayList<Bourses>();
+			Demons1 = new ArrayList<Demon1>();
+			Demons2 = new ArrayList<Demon2>();
+			Demons3 = new ArrayList<Demon3>();
 
 			while((i=fr.read()) != -1){
 				char strImg = (char) i;
@@ -64,6 +77,29 @@ public class GameBoard extends JPanel implements KeyListener {
 					Game [x][y] = "BOURSES";
 					bourses = new Bourses (x*32, y*32);
 					Boursess.add(bourses);
+				}
+				else if (strImg == '4'){
+					Game [x][y] = "BOURSES";
+					bourses = new Bourses (x*32, y*32);
+					Boursess.add(bourses);
+				}
+				else if(strImg == '5'){
+					Game[x][y] = "DEMON1";
+					demon1 = new Demon1 (x*32,y*32);
+					Demons1.add(demon1);
+					
+				}
+				else if(strImg == '6'){
+					Game[x][y] = "DEMON2";
+					demon2 = new Demon2 (x*32,y*32);
+					Demons2.add(demon2);
+					
+				}
+				else if(strImg == '7'){
+					Game[x][y] = "DEMON3";
+					demon3 = new Demon3 (x*32,y*32);
+					Demons3.add(demon3);
+					
 				}
 				else if (strImg == ' '){
 					Game[x][y] = null;
@@ -101,14 +137,20 @@ public class GameBoard extends JPanel implements KeyListener {
 			bourses = (Bourses) Boursess.get(i); 
 			g2d.drawImage(bourses.getImage(), bourses.getX(),bourses.getY(), null);
 		}
+		
 		try{
 			g2d.drawImage(lorann.getImage(), lorann.getX(), lorann.getY(), null);
+			g2d.drawImage(demon1.getImage(), demon1.getX(), demon1.getY(), null);
+			g2d.drawImage(demon2.getImage(), demon2.getX(), demon2.getY(), null);
+			g2d.drawImage(demon3.getImage(), demon3.getX(), demon3.getY(), null);
 		}
 		catch(Exception ex){
 			g.setColor(Color.BLACK);
 			g.setFont(levelFont);
 			g.drawString("LEVEL : " + level,10, 25);
 		}
+		repaint();
+	
 	}
 	public void keyPressed(KeyEvent arg0) {
 		int Touche = arg0.getKeyCode();
@@ -136,8 +178,10 @@ public class GameBoard extends JPanel implements KeyListener {
 		else if (Touche == KeyEvent.VK_R){
 			ChangerLevel();
 		}
+		pathToLorann();
 		repaint();
 		//VerifierLevelFini();
+		
 
 	}
 	public void CheckCollision(){
@@ -198,9 +242,35 @@ public class GameBoard extends JPanel implements KeyListener {
 			}
 		}
 	}
+	
+
+	public void pathToLorann(){
+		if(demon1.getX()<lorann.getX()){
+		
+			demon1.setX(4);
+		}
+		else if(demon1.getX() > lorann.getX()){
+			
+		
+			demon1.setX(-4);
+		}
+		else if(demon1.getY() < lorann.getY()){
+		
+			
+			demon1.setY(4);
+		}
+		else if(demon1.getY() > lorann.getY()){
+			
+
+			demon1.setY(-4);
+		}
+		repaint();
+		
+		
+	}
 
 	public void keyReleased(KeyEvent arg0) {
-
+	
 
 	}
 

@@ -38,7 +38,7 @@ public class Murs {
 
 	public Image getImage(){
 		if(BoneDir == "VERTICAL"){
-			Bone = iMur.getImage();
+			Bone = iMurVerti.getImage();
 		}
 		else if (BoneDir == "HORIZONTAL"){
 			Bone = iMurHorizon.getImage();

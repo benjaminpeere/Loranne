@@ -34,4 +34,9 @@ public class Bourses {
 		return Bourses;
 	}
 
+	public static void CheckCollision() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
