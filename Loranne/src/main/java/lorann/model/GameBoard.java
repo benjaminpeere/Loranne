@@ -246,22 +246,15 @@ public class GameBoard extends JPanel implements KeyListener {
 
 	public void pathToLorann(){
 		if(demon1.getX()<lorann.getX()){
-		
 			demon1.setX(4);
 		}
 		else if(demon1.getX() > lorann.getX()){
-			
-		
 			demon1.setX(-4);
 		}
 		else if(demon1.getY() < lorann.getY()){
-		
-			
 			demon1.setY(4);
 		}
 		else if(demon1.getY() > lorann.getY()){
-			
-
 			demon1.setY(-4);
 		}
 		repaint();
