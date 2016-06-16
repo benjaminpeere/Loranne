@@ -15,7 +15,6 @@ import javax.swing.JPanel;
 
 public class GameBoard extends JPanel implements KeyListener {
 
-	
 	/**
 	 * 
 	 */
@@ -42,11 +41,9 @@ public class GameBoard extends JPanel implements KeyListener {
 
 	public GameBoard (){
 		this.setBackground(Color.BLACK);
-		
 		ChangerLevel();
 		setFocusable(true);
 		addKeyListener(this);
-		
 	}
 
 	private void ChangerLevel() {
@@ -93,25 +90,21 @@ public class GameBoard extends JPanel implements KeyListener {
 					Game[x][y] = "DEMON1";
 					demon1 = new Demon1 (x*32,y*32);
 					Demons1.add(demon1);
-					
 				}
 				else if(strImg == '6'){
 					Game[x][y] = "DEMON2";
 					demon2 = new Demon2 (x*32,y*32);
 					Demons2.add(demon2);
-					
 				}
 				else if(strImg == '7'){
 					Game[x][y] = "DEMON3";
 					demon3 = new Demon3 (x*32,y*32);
 					Demons3.add(demon3);
-					
 				}
 				else if(strImg == '8'){
 					Game[x][y] = "DEMON4";
 					demon4 = new Demon4 (x*32,y*32);
 					Demons4.add(demon4);
-					
 				}
 				else if (strImg == ' '){
 					Game[x][y] = null;
@@ -125,7 +118,8 @@ public class GameBoard extends JPanel implements KeyListener {
 				}
 				else {
 					x++;
-				}		
+				}
+
 			}
 		}
 		catch(Exception ex){
@@ -149,7 +143,6 @@ public class GameBoard extends JPanel implements KeyListener {
 			bourses = (Bourses) Boursess.get(i); 
 			g2d.drawImage(bourses.getImage(), bourses.getX(),bourses.getY(), null);
 		}
-		
 		try{
 			g2d.drawImage(lorann.getImage(), lorann.getX(), lorann.getY(), null);
 			g2d.drawImage(demon1.getImage(), demon1.getX(), demon1.getY(), null);
@@ -163,7 +156,6 @@ public class GameBoard extends JPanel implements KeyListener {
 			g.drawString("LEVEL : " + level,10, 25);
 		}
 		repaint();
-	
 	}
 	public void keyPressed(KeyEvent arg0) {
 		int Touche = arg0.getKeyCode();
@@ -171,18 +163,22 @@ public class GameBoard extends JPanel implements KeyListener {
 		if (Touche == KeyEvent.VK_DOWN){
 			lorann.moveDown();
 			CheckCollision();
+			CheckMonster();
 		}
 		else if (Touche == KeyEvent.VK_UP){
 			lorann.moveUp();
 			CheckCollision();
+			CheckMonster();
 		}
 		else if (Touche == KeyEvent.VK_RIGHT){
 			lorann.moveRight();
 			CheckCollision();
+			CheckMonster();
 		}
 		else if (Touche == KeyEvent.VK_LEFT){
 			lorann.moveLeft();
 			CheckCollision();
+			CheckMonster();
 		}
 		else if (Touche == KeyEvent.VK_R){
 			ChangerLevel();
@@ -193,7 +189,6 @@ public class GameBoard extends JPanel implements KeyListener {
 		pathToLorann4();
 		repaint();
 		//VerifierLevelFini();
-		
 
 	}
 	public void CheckCollision(){
@@ -203,7 +198,6 @@ public class GameBoard extends JPanel implements KeyListener {
 		for(int i=0;i<Murss.size();i++){
 			mur = (Murs) Murss.get(i);
 			Rectangle murRec = mur.getBounds();
-			
 			if(lorannRec.intersects(murRec)){
 				if (lorann.getDir() == "BAS" ){
 					lorann.setY(lorann.getY() - 32 );
@@ -218,7 +212,6 @@ public class GameBoard extends JPanel implements KeyListener {
 					lorann.setX(lorann.getX() - 32 );
 				}
 			}
-			
 		}
 
 		for(int i=0;i<Boursess.size();i++){
@@ -240,7 +233,6 @@ public class GameBoard extends JPanel implements KeyListener {
 				}
 			}
 		}
-		
 
 		for (int i=0;i<Bulles.size();i++){
 			bulle = (Bulle) Bulles.get(i);
@@ -248,61 +240,65 @@ public class GameBoard extends JPanel implements KeyListener {
 
 			for (int j = 0; j < Bulles.size(); j++){
 				bulle = (Bulle) Bulles.get(i);
-				if (lorannRec.intersects(objectifRec)){		
+				if (lorannRec.intersects(objectifRec)){
+
 					ChangerLevel();
 				}
 			}
 		}
-		
+	}
+	public void CheckMonster(){
+		Rectangle lorannRec;
+		lorannRec = lorann.getBounds();
 		for (int i=0;i<Demons1.size();i++){
 			demon1 = (Demon1) Demons1.get(i);
 			Rectangle demon1Rec = demon1.getBounds();
 
 			for (int j = 0; j < Demons1.size(); j++){
 				demon1 = (Demon1) Demons1.get(i);
-				if (lorannRec.intersects(demon1Rec)){	
+				if (lorannRec.intersects(demon1Rec)){
+
 					ChangerLevel();
 				}
 			}
 		}
-		
 		for (int i=0;i<Demons2.size();i++){
 			demon2 = (Demon2) Demons2.get(i);
 			Rectangle demon2Rec = demon2.getBounds();
 
 			for (int j = 0; j < Demons2.size(); j++){
 				demon2 = (Demon2) Demons2.get(i);
-				if (lorannRec.intersects(demon2Rec)){	
+				if (lorannRec.intersects(demon2Rec)){
+
 					ChangerLevel();
 				}
 			}
 		}
-		
 		for (int i=0;i<Demons3.size();i++){
 			demon3 = (Demon3) Demons3.get(i);
 			Rectangle demon3Rec = demon3.getBounds();
 
 			for (int j = 0; j < Demons3.size(); j++){
 				demon3 = (Demon3) Demons3.get(i);
-				if (lorannRec.intersects(demon3Rec)){	
+				if (lorannRec.intersects(demon3Rec)){
+
 					ChangerLevel();
 				}
 			}
 		}
-		
 		for (int i=0;i<Demons4.size();i++){
 			demon4 = (Demon4) Demons4.get(i);
 			Rectangle demon4Rec = demon4.getBounds();
 
 			for (int j = 0; j < Demons4.size(); j++){
 				demon4 = (Demon4) Demons4.get(i);
-				if (lorannRec.intersects(demon4Rec)){	
+				if (lorannRec.intersects(demon4Rec)){
+
 					ChangerLevel();
 				}
 			}
 		}
 	}
-	
 
 	public void pathToLorann1(){
 		if(demon1.getX()<lorann.getX()){
@@ -319,7 +315,6 @@ public class GameBoard extends JPanel implements KeyListener {
 		}
 		repaint();
 	}
-	
 	public void pathToLorann2(){
 		if(demon2.getX()<lorann.getX()){
 			demon2.moveRight();
@@ -335,7 +330,6 @@ public class GameBoard extends JPanel implements KeyListener {
 		}
 		repaint();
 	}
-	
 	public void pathToLorann3(){
 		if(demon3.getX()<lorann.getX()){
 			demon3.moveRight();
@@ -351,7 +345,6 @@ public class GameBoard extends JPanel implements KeyListener {
 		}
 		repaint();
 	}
-		
 	public void pathToLorann4(){
 		if(demon4.getX()<lorann.getX()){
 			demon4.moveRight();
@@ -367,9 +360,7 @@ public class GameBoard extends JPanel implements KeyListener {
 		}
 		repaint();
 	}
-	
 	public void keyReleased(KeyEvent arg0) {
-	
 
 	}
 
