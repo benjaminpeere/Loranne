@@ -5,6 +5,11 @@ import lorann.model.GameBoard;
 
 public class ViewFrame  extends JFrame{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public ViewFrame(){
 		
 		this.setTitle("Lorann");

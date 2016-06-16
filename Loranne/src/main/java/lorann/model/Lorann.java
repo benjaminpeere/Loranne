@@ -5,10 +5,10 @@ import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 
-public class Lorann {
+public class Lorann extends Mobile{
 	public static Object lorann;
-	int x,y;
-	String LorannDir = "BAS";
+
+	//String LorannDir = "BAS";
 	Image Lorann;
 	ImageIcon iLorannBas = new ImageIcon("Images/lorann_b.png");
 	ImageIcon iLorannBasGauche = new ImageIcon("Images/lorann_bl.png");
@@ -20,9 +20,12 @@ public class Lorann {
 	ImageIcon iLorannHautDroite = new ImageIcon("Images/lorann_ur.png");
 	
 
-	public Lorann(int Startx, int Starty){
-		x = Startx;
-		y = Starty;
+	public Lorann(int Startx,int Starty){
+		this.x = Startx;
+		this.y = Starty;
+		
+		ImageIcon iLorann = new ImageIcon("Images/lorann_b.png");
+		Lorann = iLorann.getImage();
 	}
 	
 	public Rectangle getBounds(){ //pour les collision
@@ -30,86 +33,32 @@ public class Lorann {
 		return Box;
 	}
 	
-	public int getX(){
-		return x;
-	}
-	
-	public int getY(){
-		return y;
-	}
-	
-	public String getDir(){
-		return LorannDir;
-	}
-	
-	public void setX(int newX){
-		this.x = newX;
-	}
-	
-	public void setY(int newY){
-		this.y = newY;
-	}
-	
-	public void setDir(String newDir){
-		this.LorannDir = newDir;
-	}
-	
 	public Image getImage(){
-		if(LorannDir == "BAS"){ //on fait ça pour donner la bonne image de lorann en fonction du déplacement
+		if(direction == "BAS"){ //on fait ça pour donner la bonne image de lorann en fonction du déplacement
 			Lorann = iLorannBas.getImage();
 		}
-		else if (LorannDir == "BASGAUCHE"){
+		else if (direction == "BASGAUCHE"){
 			Lorann = iLorannBasGauche.getImage();
 		}
-		else if (LorannDir == "BASDROITE"){
+		else if (direction == "BASDROITE"){
 			Lorann = iLorannBasDroite.getImage();
 		}
-		else if (LorannDir == "DROITE"){
+		else if (direction == "DROITE"){
 			Lorann = iLorannDroite.getImage();
 		}
-		else if (LorannDir == "GAUCHE"){
+		else if (direction == "GAUCHE"){
 			Lorann = iLorannGauche.getImage();
 		}
-		else if (LorannDir == "HAUT"){
+		else if (direction == "HAUT"){
 			Lorann = iLorannHaut.getImage();
 		}
-		else if (LorannDir == "HAUTGAUCHE"){
+		else if (direction == "HAUTGAUCHE"){
 			Lorann = iLorannHautGauche.getImage();
 		}
-		else if (LorannDir == "HAUTDROITE"){
+		else if (direction == "HAUTDROITE"){
 			Lorann = iLorannHautDroite.getImage();
 		}
 		return Lorann;
 	}
 	
-	public void Move(){
-		if(LorannDir == "BAS"){ //on fait ça pour bouger dans le bon sens lorann
-			this.y += 32;
-		}
-		else if (LorannDir == "BASGAUCHE"){
-			this.y += 32;
-			this.x -= 32;
-		}
-		else if (LorannDir == "BASDROITE"){
-			this.y += 32;
-			this.x += 32;
-		}
-		else if (LorannDir == "DROITE"){
-			this.x += 32;
-		}
-		else if (LorannDir == "GAUCHE"){
-			this.x -= 32;
-		}
-		else if (LorannDir == "HAUT"){
-			this.y -= 32;
-		}
-		else if (LorannDir == "HAUTGAUCHE"){
-			this.y -= 32;
-			this.x -= 32;
-		}
-		else if (LorannDir == "HAUTDROITE"){
-			this.y -= 32;
-			this.x += 32;
-		}
-	}
 }

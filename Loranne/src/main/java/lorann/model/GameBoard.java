@@ -4,19 +4,22 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.List;
+
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 public class GameBoard extends JPanel implements KeyListener {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String Game[][] = new String [12][12];
 	int level = 1;
 	private static ArrayList<Murs> Murss;
@@ -25,6 +28,7 @@ public class GameBoard extends JPanel implements KeyListener {
 	private static ArrayList<Demon1> Demons1;
 	private static ArrayList<Demon2> Demons2;
 	private static ArrayList<Demon3> Demons3;
+	private static ArrayList<Demon4> Demons4;
 	Murs mur;
 	Lorann lorann;
 	Bulle bulle;
@@ -32,6 +36,7 @@ public class GameBoard extends JPanel implements KeyListener {
 	Demon1 demon1;
 	Demon2 demon2;
 	Demon3 demon3;
+	Demon4 demon4;
 	Font levelFont = new Font("SansSerif", Font.BOLD, 30);
 	FileReader fr;
 
@@ -55,6 +60,7 @@ public class GameBoard extends JPanel implements KeyListener {
 			Demons1 = new ArrayList<Demon1>();
 			Demons2 = new ArrayList<Demon2>();
 			Demons3 = new ArrayList<Demon3>();
+			Demons4 = new ArrayList<Demon4>();
 
 			while((i=fr.read()) != -1){
 				char strImg = (char) i;
@@ -101,6 +107,12 @@ public class GameBoard extends JPanel implements KeyListener {
 					Demons3.add(demon3);
 					
 				}
+				else if(strImg == '8'){
+					Game[x][y] = "DEMON4";
+					demon4 = new Demon4 (x*32,y*32);
+					Demons4.add(demon4);
+					
+				}
 				else if (strImg == ' '){
 					Game[x][y] = null;
 				}
@@ -143,6 +155,7 @@ public class GameBoard extends JPanel implements KeyListener {
 			g2d.drawImage(demon1.getImage(), demon1.getX(), demon1.getY(), null);
 			g2d.drawImage(demon2.getImage(), demon2.getX(), demon2.getY(), null);
 			g2d.drawImage(demon3.getImage(), demon3.getX(), demon3.getY(), null);
+			g2d.drawImage(demon4.getImage(), demon4.getX(), demon4.getY(), null);
 		}
 		catch(Exception ex){
 			g.setColor(Color.BLACK);
@@ -156,29 +169,28 @@ public class GameBoard extends JPanel implements KeyListener {
 		int Touche = arg0.getKeyCode();
 
 		if (Touche == KeyEvent.VK_DOWN){
-			lorann.setDir("BAS");
-			lorann.Move();
+			lorann.moveDown();
 			CheckCollision();
 		}
 		else if (Touche == KeyEvent.VK_UP){
-			lorann.setDir("HAUT");
-			lorann.Move();
+			lorann.moveUp();
 			CheckCollision();
 		}
 		else if (Touche == KeyEvent.VK_RIGHT){
-			lorann.setDir("DROITE");
-			lorann.Move();
+			lorann.moveRight();
 			CheckCollision();
 		}
 		else if (Touche == KeyEvent.VK_LEFT){
-			lorann.setDir("GAUCHE");
-			lorann.Move();
+			lorann.moveLeft();
 			CheckCollision();
 		}
 		else if (Touche == KeyEvent.VK_R){
 			ChangerLevel();
 		}
-		pathToLorann();
+		pathToLorann1();
+		pathToLorann2();
+		pathToLorann3();
+		pathToLorann4();
 		repaint();
 		//VerifierLevelFini();
 		
@@ -193,7 +205,7 @@ public class GameBoard extends JPanel implements KeyListener {
 			Rectangle murRec = mur.getBounds();
 			
 			if(lorannRec.intersects(murRec)){
-				if (lorann.getDir() == "BAS"){
+				if (lorann.getDir() == "BAS" ){
 					lorann.setY(lorann.getY() - 32 );
 				}
 				else if (lorann.getDir() == "HAUT"){
@@ -241,31 +253,121 @@ public class GameBoard extends JPanel implements KeyListener {
 				}
 			}
 		}
+		
+		for (int i=0;i<Demons1.size();i++){
+			demon1 = (Demon1) Demons1.get(i);
+			Rectangle demon1Rec = demon1.getBounds();
+
+			for (int j = 0; j < Demons1.size(); j++){
+				demon1 = (Demon1) Demons1.get(i);
+				if (lorannRec.intersects(demon1Rec)){	
+					ChangerLevel();
+				}
+			}
+		}
+		
+		for (int i=0;i<Demons2.size();i++){
+			demon2 = (Demon2) Demons2.get(i);
+			Rectangle demon2Rec = demon2.getBounds();
+
+			for (int j = 0; j < Demons2.size(); j++){
+				demon2 = (Demon2) Demons2.get(i);
+				if (lorannRec.intersects(demon2Rec)){	
+					ChangerLevel();
+				}
+			}
+		}
+		
+		for (int i=0;i<Demons3.size();i++){
+			demon3 = (Demon3) Demons3.get(i);
+			Rectangle demon3Rec = demon3.getBounds();
+
+			for (int j = 0; j < Demons3.size(); j++){
+				demon3 = (Demon3) Demons3.get(i);
+				if (lorannRec.intersects(demon3Rec)){	
+					ChangerLevel();
+				}
+			}
+		}
+		
+		for (int i=0;i<Demons4.size();i++){
+			demon4 = (Demon4) Demons4.get(i);
+			Rectangle demon4Rec = demon4.getBounds();
+
+			for (int j = 0; j < Demons4.size(); j++){
+				demon4 = (Demon4) Demons4.get(i);
+				if (lorannRec.intersects(demon4Rec)){	
+					ChangerLevel();
+				}
+			}
+		}
 	}
 	
 
-	public void pathToLorann(){
+	public void pathToLorann1(){
 		if(demon1.getX()<lorann.getX()){
-			demon1.setDir("DROITE");
-			demon1.MoveDemon();
+			demon1.moveRight();
 		}
-		else if(demon1.getX() > lorann.getX()){
-			demon1.setDir("GAUCHE");
-			demon1.MoveDemon();
+		else if(demon1.getX()>lorann.getX()){
+			demon1.moveLeft();
 		}
-		else if(demon1.getY() < lorann.getY()){
-			demon1.setDir("BAS");
-			demon1.MoveDemon();
+		else if(demon1.getY()<lorann.getY()){
+			demon1.moveDown();
 		}
 		else if(demon1.getY() > lorann.getY()){
-			demon1.setDir("HAUT");
-			demon1.MoveDemon();
+			demon1.moveUp();
 		}
 		repaint();
-		
-		
 	}
-
+	
+	public void pathToLorann2(){
+		if(demon2.getX()<lorann.getX()){
+			demon2.moveRight();
+		}
+		else if (demon2.getX()>lorann.getX()){
+			demon2.moveLeft();
+		}
+		else if (demon2.getY()<lorann.getY()){
+			demon2.moveDown();
+		}
+		else if(demon2.getY() > lorann.getY()){
+			demon2.moveUp();
+		}
+		repaint();
+	}
+	
+	public void pathToLorann3(){
+		if(demon3.getX()<lorann.getX()){
+			demon3.moveRight();
+		}
+		else if (demon3.getX()>lorann.getX()){
+			demon3.moveLeft();
+		}
+		else if (demon3.getY()<lorann.getY()){
+			demon3.moveDown();
+		}
+		else if(demon3.getY() > lorann.getY()){
+			demon3.moveUp();
+		}
+		repaint();
+	}
+		
+	public void pathToLorann4(){
+		if(demon4.getX()<lorann.getX()){
+			demon4.moveRight();
+		}
+		else if (demon4.getX()>lorann.getX()){
+			demon4.moveLeft();
+		}
+		else if (demon4.getY()<lorann.getY()){
+			demon4.moveDown();
+		}
+		else if(demon4.getY() > lorann.getY()){
+			demon4.moveUp();
+		}
+		repaint();
+	}
+	
 	public void keyReleased(KeyEvent arg0) {
 	
 
